@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import React, { useEffect, useState } from 'react';
 
 function App() {
+  const [message, setMessage] = useState('Loading...');
+  const apiBase = 'https://automatic-dollop-4wxr4j5gw972ggp-5255.github.dev'; // e.g., https://<codespace-host>:5001
+
+  useEffect(() => {
+    fetch(`${apiBase}/weatherforecast`)
+      .then(res => res.json())
+      .then(data => setMessage(JSON.stringify(data, null, 2)))
+      .catch(err => setMessage(`Error: ${err.message}`));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: 24, fontFamily: 'sans-serif' }}>
+      <h1>PhotoHub Demo</h1>
+      <pre>{message}</pre>
     </div>
   );
 }

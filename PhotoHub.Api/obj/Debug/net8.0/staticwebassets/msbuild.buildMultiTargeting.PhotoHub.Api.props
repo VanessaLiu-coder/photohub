@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/PhotoHub.Api.props" />
+</Project>
