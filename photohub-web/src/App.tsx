@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react';
 
 function App() {
   const [message, setMessage] = useState('Loading...');
-  const apiBase = 'https://automatic-dollop-4wxr4j5gw972ggp-5255.github.dev'; // e.g., https://<codespace-host>:5001
+
+  // Paste the exact HTTPS forwarded URL from the Ports panel (no trailing slash)
+  const apiBase = 'https://<your-codespace-id>-5255.app.github.dev';
 
   useEffect(() => {
     fetch(`${apiBase}/weatherforecast`)
@@ -13,11 +15,12 @@ function App() {
   }, []);
 
   return (
-    <div style={{ padding: 24, fontFamily: 'sans-serif' }}>
+    <div style={{ padding: 24 }}>
       <h1>PhotoHub Demo</h1>
       <pre>{message}</pre>
     </div>
   );
 }
+
 
 export default App;
