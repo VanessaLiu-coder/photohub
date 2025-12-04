@@ -1,0 +1,21 @@
+
+{
+  "name": "React + ASP.NET Core Dev",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:8.0",
+  "features": {
+    "node": "latest"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csharp",
+        "ms-vscode.vscode-typescript-next",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  "forwardPorts": [3000, 5000],
+  "postCreateCommand": "dotnet restore && npm install --prefix photohub-web",
+  "remoteUser": "vscode"
+}
