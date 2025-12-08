@@ -5,7 +5,7 @@ function App() {
   const [message, setMessage] = useState('Loading...');
 
   // Paste the exact HTTPS forwarded URL from the Ports panel (no trailing slash)
-  const apiBase = 'https://<your-codespace-id>-5255.app.github.dev';
+  const apiBase = 'https://symmetrical-pancake-9jpxv7rq74pcxw5j-5000.app.github.dev';
 
   useEffect(() => {
     fetch(`${apiBase}/weatherforecast`)

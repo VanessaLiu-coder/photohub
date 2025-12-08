@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PhotoHub.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+145387c253a8aaf51a9b00eeb85d373069a51f86")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+583d8d91d90ad994f9016c526d30059d22faddf8")]
 [assembly: System.Reflection.AssemblyProductAttribute("PhotoHub.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PhotoHub.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
