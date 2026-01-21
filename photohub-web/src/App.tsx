@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+/*import React, { useEffect, useState } from 'react';
 
 function App() {
   const [message, setMessage] = useState('Loading...');
@@ -22,5 +22,21 @@ function App() {
   );
 }
 
+
+export default App;
+*/
+
+
+import React from "react";
+import PhotoUploader from "./components/PhotoUploader";
+
+function App() {
+  return (
+    <div style={{ padding: 24 }}>
+      <h1>PhotoHub Demo</h1>
+      <PhotoUploader />
+    </div>
+  );
+}
 
 export default App;

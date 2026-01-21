@@ -32,3 +32,4 @@
 /workspaces/photohub/PhotoHub.Api/obj/Debug/net8.0/PhotoHub.Api.pdb
 /workspaces/photohub/PhotoHub.Api/obj/Debug/net8.0/PhotoHub.Api.genruntimeconfig.cache
 /workspaces/photohub/PhotoHub.Api/obj/Debug/net8.0/ref/PhotoHub.Api.dll
+/workspaces/photohub/PhotoHub.Api/bin/Debug/net8.0/PhotoHub.Api.staticwebassets.runtime.json

@@ -1,0 +1,49 @@
+{
+  "Files": [
+    {
+      "Id": "/workspaces/photohub/PhotoHub.Api/wwwroot/uploads/.gitkeep",
+      "PackagePath": "staticwebassets/uploads/.gitkeep"
+    },
+    {
+      "Id": "/workspaces/photohub/PhotoHub.Api/wwwroot/uploads/01_34c151cde8b146389de80918b1c33fa5.jpg",
+      "PackagePath": "staticwebassets/uploads/01_34c151cde8b146389de80918b1c33fa5.jpg"
+    },
+    {
+      "Id": "/workspaces/photohub/PhotoHub.Api/wwwroot/uploads/01_dee65c81e80e4351b16925ea514c1902.jpg",
+      "PackagePath": "staticwebassets/uploads/01_dee65c81e80e4351b16925ea514c1902.jpg"
+    },
+    {
+      "Id": "/workspaces/photohub/PhotoHub.Api/wwwroot/uploads/02_2625ad6cf62949f1af1f1c005536d3b8.jpg",
+      "PackagePath": "staticwebassets/uploads/02_2625ad6cf62949f1af1f1c005536d3b8.jpg"
+    },
+    {
+      "Id": "/workspaces/photohub/PhotoHub.Api/wwwroot/uploads/03_745c11c595754ae7889224a25b00090e.jpg",
+      "PackagePath": "staticwebassets/uploads/03_745c11c595754ae7889224a25b00090e.jpg"
+    },
+    {
+      "Id": "/workspaces/photohub/PhotoHub.Api/wwwroot/uploads/04_37831cd44c3946e7bee1baf0e17b880c.jpg",
+      "PackagePath": "staticwebassets/uploads/04_37831cd44c3946e7bee1baf0e17b880c.jpg"
+    },
+    {
+      "Id": "/workspaces/photohub/PhotoHub.Api/wwwroot/uploads/logo192_76bf3c3aeaea478abf66029bf990128b.png",
+      "PackagePath": "staticwebassets/uploads/logo192_76bf3c3aeaea478abf66029bf990128b.png"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.PhotoHub.Api.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.PhotoHub.Api.props",
+      "PackagePath": "build\\PhotoHub.Api.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.PhotoHub.Api.props",
+      "PackagePath": "buildMultiTargeting\\PhotoHub.Api.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.PhotoHub.Api.props",
+      "PackagePath": "buildTransitive\\PhotoHub.Api.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

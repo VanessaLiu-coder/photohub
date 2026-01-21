@@ -1,130 +1,48 @@
 
-
-
-/*var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
-
-app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
- 
-*/
-
-
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Http.Features;
+using PhotoHub.Api.Storage; // <-- we'll add this namespace below
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1) Register CORS
-var allowedOrigins = new[]
-{
-    // Replace with your React dev origins:
-    "http://localhost:3000",           // CRA default
-    "http://localhost:5173",           // Vite default
-    "https://symmetrical-pancake-9jpxv7rq74pcxw5j-3000.app.github.dev", // Codespaces (adjust port)
-    "https://symmetrical-pancake-9jpxv7rq74pcxw5j-5173.app.github.dev"  // Vite in Codespaces
-    // Or use your deployed frontend origin(s)
-};
+// CORS — allow React on port 3000 (and a Codespaces URL via config/env)
+var frontendUrls = builder.Configuration
+    .GetSection("FrontendUrls")
+    //.Get<string[]>() ?? new[] { "http://localhost:3000" };
+    .Get<string[]>() ?? Array.Empty<string>();
 
-builder.Services.AddCors(options =>
+builder.Services.AddCors(opt =>
 {
-    options.AddPolicy("FrontendPolicy", policy =>
+    opt.AddPolicy("Frontend", policy =>
     {
-        policy.WithOrigins(allowedOrigins)
+        policy.WithOrigins(frontendUrls)
+              .AllowAnyHeader()
               .AllowAnyMethod()
-              .AllowAnyHeader();
-        // If you need cookies/Authorization header across origins:
-        // policy.AllowCredentials();
+              .AllowCredentials();
     });
-
-    // For quick local troubleshooting (dev only!)
-    // options.AddPolicy("AllowAll", p => p
-    //     .AllowAnyOrigin()
-    //     .AllowAnyMethod()
-    //     .AllowAnyHeader());
 });
 
-builder.Services.AddControllers(); // or minimal APIs
+// Allow up to 20 MB images
+builder.Services.Configure<FormOptions>(o =>
+{
+    o.MultipartBodyLengthLimit = 20 * 1024 * 1024; // 20 MB
+});
+
+builder.Services.AddControllers();
+
+// Storage backend: Local by default; we’ll switch to Azure later via config.
+builder.Services.AddSingleton<IPhotoStorage, LocalPhotoStorage>();
 
 var app = builder.Build();
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+// In Codespaces, ensure Kestrel listens on 0.0.0.0:5000.
+// If needed, run with: dotnet run --urls=http://0.0.0.0:5000
 
+app.UseCors("Frontend");
 
-
-// 2) Enable CORS in the pipeline
-app.UseHttpsRedirection();
-
-app.UseRouting();
-
-// Choose ONE policy to use globally:
-app.UseCors("FrontendPolicy"); // or "AllowAll" for dev only
-
-app.UseAuthorization();
+// Serve static files from wwwroot (so /uploads/* works)
+app.UseStaticFiles();
 
 app.MapControllers();
-// For minimal APIs, attach per‑endpoint if preferred:
-// app.MapGet("/weatherforecast", () => ...).RequireCors("FrontendPolicy");
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
